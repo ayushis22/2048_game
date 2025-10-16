@@ -46,6 +46,15 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5000;
 
+const __dirname1 = path.resolve();
+
+app.use(express.static(path.join(__dirname1, "client", "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname1, "client", "build", "index.html"));
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
